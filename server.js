@@ -3,9 +3,9 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient
 const url = 'mongodb+srv://bodle:7708qjawns@cluster0.y4o9q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-
-app.listen(3000, function() {
-	console.log('listening on 3000')
+port = 3001
+app.listen(port, function() {
+	console.log('listening on ' + port)
 });
 
 // crud handlers

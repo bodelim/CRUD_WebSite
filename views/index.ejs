@@ -1,30 +1,143 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
-  <title>CRUD</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script type="module">
+    import { Toast } from 'bootstrap.esm.min.js'
+  
+    Array.from(document.querySelectorAll('.toast'))
+      .forEach(toastNode => new Toast(toastNode))
+  </script>
+
+<style>
+  .main_right_btn {
+    position: relative;
+    width: 50%;
+    float: right;
+}
+  .main_left_write {
+    position: relative;
+    width: 50%;
+    float: left;
+    padding: 10px 10px 10px 10px;
+  }
+  .main_cards {
+    position: relative;
+    height: 200px;
+    width: 50%;
+    top: 280px;
+    background-color:aqua;
+  }
+</style>
+
+  <title>CRUD Board</title>
 </head>
 <body>
-  <h1> Upload Test. </h1>
+<!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Board</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-	<form action="/quotes" method="POST">
-	  <input type="text" placeholder="name" name="name">
-	  <input type="text" placeholder="quote" name="quote">
-	  <button type="submit">Submit</button>
-	</form>
+  <div class="main_right_btn">
+    <div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+      CRUD Board
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">A second item</button>
+    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+    <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button>
+  </div>
+</div>
 
-  <h2> Sex </h2>
+  <div class="main_left_write">
+    <form action="/quotes" method="POST">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input type="text" class="form-control" placeholder="제목을 입력하세요." name="name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+      <textarea rows="3" class="form-control" placeholder="내용을 입력하세요." name="quote"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">작성</button>
+  </div>
+</form>
 
-  <ul class="quotes">
-    <!-- Loop through quotes -->
-    <% for(var i = 0; i < quotes.length; i++) {%>
-      <li class="quote">
-        <!-- Output name from the iterated quote object -->
-        <span><%= quotes[i].name %></span>:
-        <!-- Output quote from the iterated quote object -->
-        <span><%= quotes[i].quote %></span>
-      </li>
-    <% } %>
-  </ul>
+<div class="main_cards">
+  <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  
+  
+  <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i = 0; i < quotes.length; i++) {%>
+        <tr>
+          <th scope="row"><%=i+1%></th>
+          <td><%= quotes[i].name %></td>
+          <td><%= quotes[i].quote %></td>
+          <td>YYYY-MM-DD</td>
+      </tr>
+        <% } %>
+    </tbody>
+  </table>
 
 </body>
 </html>
